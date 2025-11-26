@@ -1,0 +1,16 @@
+services:
+
+ftpserver:
+  build:
+    context: .
+    dockerfile: Dockerfile
+  environment:
+    - FTP_USER=${FTP_USERNAME:-cedmt}
+    - FTP_PASS=${FTP_PASSWORD:-1234560}
+    - FTP_PORT=${FTP_PORT:-21}
+    - FTP_DATA_PORT=${FTP_DATA_PORT:-20}
+    - FTP_PASSIVE_PORTS=${FTP_PASSIVE_PORTS:-21100-21110}
+  volumes:
+    - ./data:/home/${FTP_USERNAME:-cedmt}
+  networks:
+    - cedeira-prddi-sandboxbank
